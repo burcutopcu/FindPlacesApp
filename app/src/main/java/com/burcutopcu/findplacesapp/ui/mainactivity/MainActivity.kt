@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.LifecycleOwner
 import com.burcutopcu.findplacesapp.R
+import com.burcutopcu.findplacesapp.constants.IntentKeys
 import com.burcutopcu.findplacesapp.extensions.hideKeyboard
 import com.burcutopcu.findplacesapp.models.PlaceResponse
 import com.burcutopcu.findplacesapp.network.repo.PlacesRepo
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, LifecycleOwner, Up
 
     lateinit var map: GoogleMap
     lateinit var placeId: String
+    lateinit var placeName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,8 +76,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, LifecycleOwner, Up
         })
 
         seeDetailsButton.setOnClickListener {
+            map.clear()
             val i = Intent(this, LocationDetailActivity::class.java)
-            i.putExtra("location_id", placeId)
+            i.putExtra(IntentKeys.PLACE_ID, placeId)
+            i.putExtra(IntentKeys.PLACE_NAME, placeName)
+            startActivity(i)
         }
 
         mapFragment.getMapAsync(this)
@@ -86,15 +91,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, LifecycleOwner, Up
     }
 
     override fun onSearchItemClick(location: PlaceResponse) {
+        map.clear()
         searchResultsRv.visibility = View.GONE
-        placeId = location.placeId
+        placeId = location.placeId!!
+        placeName = location.name!!
         seeDetailsButton.visibility = View.VISIBLE
         this.hideKeyboard()
         val latLng = LatLng(
-            location.geometry.location.lat.toDouble(),
+            location.geometry!!.location.lat.toDouble(),
             location.geometry.location.lng.toDouble()
         )
         map.addMarker(MarkerOptions().position(latLng).title(location.name))
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
     }
 }

@@ -49,7 +49,7 @@ class PermissionActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {
-                Toast.makeText(this, "Uygulamaya girmek için izin vermelisin", Toast.LENGTH_SHORT)
+                Toast.makeText(this, getString(R.string.allow_for_enter_app), Toast.LENGTH_SHORT)
                     .show()
             }
         }

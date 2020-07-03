@@ -8,7 +8,15 @@ import retrofit2.http.Query
 interface PlacesService {
     @GET("place/textsearch/json")
     fun getPlaces(
-    @Query("query") input: String,
-    @Query("language") language: String,
-    @Query("key") key: String): Observable<PlaceListResponse>
+        @Query("query") input: String,
+        @Query("language") language: String,
+        @Query("key") key: String
+    ): Observable<PlaceListResponse>
+
+    @GET("place/photo")
+    fun getPhoto(
+        @Query("maxwidth") maxWidth: String,
+        @Query("photoreference") photoReference: String,
+        @Query("key") key: String
+    ): Observable<String>
 }

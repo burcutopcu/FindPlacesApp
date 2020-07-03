@@ -8,5 +8,5 @@ data class PlaceListResponse(
     @SerializedName("results")
     val placeResponses: List<PlaceResponse>,
     @SerializedName("error_message")
-    val errorMessage: String
+    val errorMessage: String?
 )
