@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FindPlacesApp</string>
+    <string name="map_key">AIzaSyBRwIcLTz27crxd4TipuEcE64k8HOHX144</string>
+
+    <string name="permission_request">Lokasyon İzni</string>
+    <string name="permission_request_subtitle">FindPlaces bazı hizmetleri sağlayabilmek için lokasyonuna erişmek istiyor. Uygulamaya devam etmek için hadi izin ver!</string>
+    <string name="give_permission">İZİN VER</string>
+
+    <string name="see_details">DETAYLARI GÖR</string>
+    <string name="write_different_location">Bu lokasyon yok, yeni bir lokasyon yazmayı dene</string>
+</resources>
