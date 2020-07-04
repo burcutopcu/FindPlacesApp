@@ -9,14 +9,12 @@ interface PlacesService {
     @GET("place/textsearch/json")
     fun getPlaces(
         @Query("query") input: String,
-        @Query("language") language: String,
-        @Query("key") key: String
+        @Query("language") language: String
     ): Observable<PlaceListResponse>
 
     @GET("place/photo")
     fun getPhoto(
         @Query("maxwidth") maxWidth: String,
-        @Query("photoreference") photoReference: String,
-        @Query("key") key: String
+        @Query("photoreference") photoReference: String
     ): Observable<String>
 }

@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, LifecycleOwner, Up
         locationSearchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
                 if (!newText.isBlank()) {
-                    mainActivityViewModel.getPlaces(newText, this@MainActivity)
+                    mainActivityViewModel.getPlaces(newText)
                         .subscribe({ placeList ->
                             if (placeList.placeResponses.isEmpty()) {
                                 searchResultsRv.visibility = View.GONE

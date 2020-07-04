@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.burcutopcu.findplacesapp.R
+import com.burcutopcu.findplacesapp.constants.GeneralConstants
 import com.burcutopcu.findplacesapp.constants.IntentKeys
 import com.burcutopcu.findplacesapp.models.PlaceResponse
 import com.burcutopcu.findplacesapp.ui.locationdetail.di.DaggerLocationDetailActivityComponent
@@ -36,7 +37,7 @@ class LocationDetailActivity : AppCompatActivity() {
 
     private fun getPlace() {
         progressLayout.visibility = View.VISIBLE
-        locationDetailActivityViewModel.getPlaces(locationName, this)
+        locationDetailActivityViewModel.getPlaces(locationName)
             .subscribe({
                 it.placeResponses.forEach { place ->
                     if (place.name == locationName) {
@@ -52,10 +53,9 @@ class LocationDetailActivity : AppCompatActivity() {
                             .into(locationDetailIconImage)
 
                         if (currentPlace.photos != null) {
-                            var url =
-                                "https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=" + currentPlace.photos[0].photo_reference + "&sensor=true&key=" + getString(
-                                    R.string.map_key
-                                )
+                            val url =
+                                "https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=" + currentPlace.photos[0].photo_reference + "&sensor=true&key=" +
+                                        GeneralConstants.MAP_KEY
                             Glide.with(this).load(url).into(locationDetailImage)
                         }
                     }

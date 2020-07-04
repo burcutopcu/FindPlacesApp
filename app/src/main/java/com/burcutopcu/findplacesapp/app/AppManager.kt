@@ -41,7 +41,8 @@ class AppManager {
 
     private class RequestInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain?): Response {
-            val url = chain?.request()?.url()
+            val url = chain?.request()?.url()?.newBuilder()
+                ?.addQueryParameter("key", GeneralConstants.MAP_KEY)?.build()
             val request = chain?.request()?.newBuilder()?.url(url)?.build()
             val response = chain?.proceed(request!!)
             return response!!

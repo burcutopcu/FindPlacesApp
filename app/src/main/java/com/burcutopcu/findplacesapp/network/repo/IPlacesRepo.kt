@@ -6,7 +6,6 @@ import io.reactivex.Observable
 interface IPlacesRepo {
     fun getPlaces(
         query: String,
-        language: String,
-        key: String
+        language: String
     ): Observable<PlaceListResponse>
 }

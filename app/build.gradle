@@ -30,6 +30,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -67,9 +71,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
-    // Paging
-    implementation "androidx.paging:paging-runtime:2.1.0"
-
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
 
@@ -82,7 +83,13 @@ dependencies {
     // if you use the support libraries
     kapt 'com.google.dagger:dagger-android-processor:2.20'
 
+    //For Test
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.9.0'
+    testImplementation 'org.mockito:mockito-core:2.19.0'
+    testImplementation 'pl.pragmatists:JUnitParams:1.1.0'
+    testImplementation "org.robolectric:robolectric:4.3"
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 

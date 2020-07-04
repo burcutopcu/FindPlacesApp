@@ -14,10 +14,9 @@ class PlacesRepo @Inject constructor(appManager: AppManager) : IPlacesRepo {
 
     override fun getPlaces(
         query: String,
-        language: String,
-        key: String
+        language: String
     ): Observable<PlaceListResponse> {
-        return placesService.getPlaces(query, language, key)
+        return placesService.getPlaces(query, language)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
